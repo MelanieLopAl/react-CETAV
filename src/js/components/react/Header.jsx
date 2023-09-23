@@ -1,10 +1,23 @@
-const Header = () => {
-  return (
-    <header id="header" class="header">
-      <a href="./account.html" id="my-account">My account &rightarrow;</a>
-      <div id="tabs" class="header__tabs"></div>
-    </header>
-  )
-}
+import { Tabs } from "./Tabs";
 
-export { Header }
+const accountTabLabels = ["Favorite", "Interested", "Going", "Calendar"];
+
+const Header = ({ isAccountPage }) => {
+  const tabLabels = isAccountPage
+    ? accountTabLabels
+    : ["Music", "Sport", "Business", "Food", "Art"];
+
+  return (
+    <header id="header" className="header">
+      <a
+        href={isAccountPage ? "./index.html" : "./account.html"}
+        id="my-account"
+      >
+        {isAccountPage ? "← Back to events" : "My account →"}
+      </a>
+      <Tabs tabLabels={tabLabels} />
+    </header>
+  );
+};
+
+export { Header };

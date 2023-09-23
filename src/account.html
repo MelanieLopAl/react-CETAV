@@ -1,23 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      ,
+      user-scalable="no"
+    />
+    <title>My Account</title>
+    <link rel="stylesheet" href="./styles/css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" , user-scalable="no">
-  <title>My Account</title>
-  <link rel="stylesheet" href="./styles/css/styles.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-
-<body id="remove-bar">
-  <header id="header" class="header">
-    <a href="./index.html" id="back-events">&leftarrow; Back to events</a>
-    <div id="tabs" class="header__tabs"></div>
-  </header>
-
-  <main id="main-gallery" class="account-container main-gallery main-container"></main>
-</body>
-<script type="module" src="./js/account.js"></script>
-
+  <body id="remove-bar">
+    <div id="root"></div>
+  </body>
+  <script type="module" src="./js/App.jsx"></script>
 </html>

@@ -1,11 +1,13 @@
 import { createRoot } from "react-dom/client";
-import { Header } from './components/react/Header';
+import { Header } from "./components/react/Header";
 import { MainContent } from "./components/react/MainContent";
+
+const isAccountPage = window.location.pathname.includes("account.html");
 
 const App = () => {
   return (
     <>
-      <Header />
+      <Header isAccountPage={isAccountPage} />
       <MainContent />
     </>
   );
