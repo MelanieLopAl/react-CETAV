@@ -1,22 +1,26 @@
 import formatDate from "../../utils/format-date";
+import EventInteractions from "./EventInteractions";
 
 const EventCard = (props) => {
+  const { title, image, date, location, price } = props;
+  const formattedDate = formatDate(new Date(date));
+
   return (
-    <div>
-      <img src={props.image} alt={props.title} />
-      <div className="gallery_text">
-        <div className="event_info">
-          <h3>{props.title}</h3>
-          <p className="date">{formatDate(new Date(props.date))}</p>
+    <li className="gallery__card">
+      <img src={image} alt={title} />
+      <div className="gallery__text">
+        <div className="event__info">
+          <h3>{title}</h3>
+          <p className="date">{formattedDate}.</p>
           <p>
-            {props.location.address}
-            {props.location.city}
-            {props.location.state}
+            {location.address} • {location.city}, {location.state}.
           </p>
-          <strong>{props.price}</strong>
+          <strong>{price}</strong>
         </div>
+        <EventInteractions />
       </div>
-    </div>
+    </li>
   );
 };
-export { EventCard };
+
+export default EventCard;

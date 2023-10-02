@@ -1,11 +1,9 @@
-import { Tabs } from "./Tabs";
+import { homeTabs } from "../../config";
 
-const accountTabLabels = ["Favorite", "Interested", "Going", "Calendar"];
-
-const Header = ({ isAccountPage }) => {
+const Header = ({ onTabChange, isAccountPage }) => {
   const tabLabels = isAccountPage
-    ? accountTabLabels
-    : ["Music", "Sport", "Business", "Food", "Art"];
+    ? ["Favorite", "Interested", "Going", "Calendar"]
+    : homeTabs.map((tab) => tab.label);
 
   return (
     <header id="header" className="header">
@@ -15,7 +13,17 @@ const Header = ({ isAccountPage }) => {
       >
         {isAccountPage ? "← Back to events" : "My account →"}
       </a>
-      <Tabs tabLabels={tabLabels} />
+      <div id="tabs" className="header__tabs">
+        {tabLabels.map((label, index) => (
+          <button
+            data-category={homeTabs[index].category}
+            key={homeTabs[index].category}
+            onClick={onTabChange}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
     </header>
   );
 };

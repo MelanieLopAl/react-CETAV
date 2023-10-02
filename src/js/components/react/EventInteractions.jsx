@@ -1,39 +1,76 @@
-const GoingMessage = () => {
+import { useState } from "react";
+
+const GoingMessage = ({ handleGoingClick }) => (
+  <>
+    <span className="check">✔</span>
+    <div>
+      <p>Youre going to this event!</p>
+      <button className="button-link" onClick={handleGoingClick}>
+        Changed your mind?
+      </button>
+    </div>
+  </>
+);
+
+const InterestedMessage = ({ handleGoingClick, handleInterestedClick }) => {
+  const handleClick = () => {
+    handleInterestedClick();
+    handleGoingClick();
+  };
+
   return (
     <>
-      <span className="check">✔</span>
       <div>
-        <p>You`re going to this event!.</p>
-        <button className="button-link">Changed your mind?</button>
+        <p>Youre interested in going.</p>
+        <button className="button-link" onClick={handleInterestedClick}>
+          Changed your mind?
+        </button>
       </div>
+      <button className="going" onClick={handleClick}>
+        Going!
+      </button>
     </>
   );
 };
 
-const InterestedMessage = () => {
-  return (
-    <>
-      <div>
-        <p>You`re interested in going.</p>
-        <button className="button-link">Changed your mind?</button>
-      </div>
-      <button className="going">Going!</button>
-    </>
-  );
-};
+const EventInteractions = () => {
+  const [going, setGoing] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [interested, setInterested] = useState(false);
 
-export const EventInteractions = () => {
+  const handleGoingClick = () => setGoing(!going);
+  const handleFavoriteClick = () => setFavorite(!favorite);
+  const handleInterestedClick = () => setInterested(!interested);
+
   return (
     <>
       <div className="interactions-container">
-        <div className="going-and-interested">
-          <button className="going">Going!</button>
-          <button className="interested">Interested</button>
-        </div>
-        <button className="heart" aria-label="favorite"></button>
+        {going || interested ? null : (
+          <div className="going-and-interested">
+            <button className="going" onClick={handleGoingClick}>
+              Going!
+            </button>
+            <button className="interested" onClick={handleInterestedClick}>
+              Interested
+            </button>
+          </div>
+        )}
+        <button
+          className={`heart ${favorite ? "heart-blue" : ""}`}
+          aria-label="Favorite"
+          onClick={handleFavoriteClick}
+        ></button>
       </div>
-      <GoingMessage />
-      <InterestedMessage />
+
+      {going ? <GoingMessage handleGoingClick={handleGoingClick} /> : null}
+      {interested ? (
+        <InterestedMessage
+          handleGoingClick={handleGoingClick}
+          handleInterestedClick={handleInterestedClick}
+        />
+      ) : null}
     </>
   );
 };
+
+export default EventInteractions;
